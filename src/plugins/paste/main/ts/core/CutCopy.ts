@@ -95,7 +95,9 @@ const getData = (editor: Editor): SelectionContentData => (
 );
 
 const cut = (editor: Editor) => (evt: ClipboardEvent) => {
-  if (editor.selection.isCollapsed() === false) {
+  if (editor.selection.isCollapsed() === false ||
+    (editor.selection.isCollapsed() === true && editor.getBody().querySelectorAll('th[data-mce-selected],td[data-mce-selected]').length > 1)
+  ) {
     setClipboardData(evt, getData(editor), fallback(editor), () => {
       // Chrome fails to execCommand from another execCommand with this message:
       // "We don't execute document.execCommand() this time, because it is called recursively.""
@@ -107,7 +109,9 @@ const cut = (editor: Editor) => (evt: ClipboardEvent) => {
 };
 
 const copy = (editor: Editor) => (evt: ClipboardEvent) => {
-  if (editor.selection.isCollapsed() === false) {
+  if (editor.selection.isCollapsed() === false ||
+    (editor.selection.isCollapsed() === true && editor.getBody().querySelectorAll('th[data-mce-selected],td[data-mce-selected]').length > 1)
+  ) {
     setClipboardData(evt, getData(editor), fallback(editor), noop);
   }
 };
