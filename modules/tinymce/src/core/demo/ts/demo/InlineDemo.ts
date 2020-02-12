@@ -27,8 +27,11 @@ export default function () {
       'autosave advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker toc',
       'searchreplace wordcount visualblocks visualchars code fullscreen fullpage insertdatetime media nonbreaking',
       'save table directionality emoticons template paste importcss textpattern',
-      'codesample help noneditable print'
+      'codesample help noneditable print',
+      'quickbars'
     ],
+    quickbars_insert_toolbar: 'quickimage quicktable',
+    quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote'
   };
 
   tinymce.init(settings);
